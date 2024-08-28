@@ -101,3 +101,17 @@ export async function createUser(email, password, username) {
     }
   }
 
+  export const getAllPosts = async ()=>{
+    try {
+      const posts = await databases.listDocuments(
+        appwriteConfig.databaseId,
+        appwriteConfig.videoCollectionId
+      );
+      return posts.documents;
+      
+    } catch (error) {
+      throw new Error(error)
+      
+    }
+    
+  }
