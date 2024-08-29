@@ -115,3 +115,19 @@ export async function createUser(email, password, username) {
     }
     
   }
+
+  export const getLatestPosts = async ()=>{
+    try {
+      const posts = await databases.listDocuments(
+        appwriteConfig.databaseId,
+        appwriteConfig.videoCollectionId,
+        [Query.orderDesc('$createdAt',  Query.limit(7))] // only wanna show only few latest video
+      );
+      return posts.documents;
+      
+    } catch (error) {
+      throw new Error(error)
+      
+    }
+
+  }
