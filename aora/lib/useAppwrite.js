@@ -1,27 +1,29 @@
-import {useState, useEffect} from 'react'
+import { Alert } from "react-native";
+import { useEffect, useState } from "react";
 
-const useAppwrite =(fn)=>{
-const [data, setData] = useState([]);
-const [isLoading, setIsLoading] = useState(true);
+const useAppwrite = (fn) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    const fetchData = async ()=>{
-    setIsLoading(true);//started fetching
+  const fetchData = async () => {
+    setLoading(true);
     try {
-        const response = await fn();
-
-        setData(response)
+      const res = await fn();
+      setData(res);
     } catch (error) {
-        Alert.alert('Error', error.message)
-    }finally{
-        setIsLoading(false);//whether succeed or not 
+      Alert.alert("Error", error.message);
+    } finally {
+      setLoading(false);
     }
-    }
+  };
 
-    useEffect(() => {
-      fetchData(); 
-    }, []);
-    const refetch=()=> fetchData()
-    return {data,isLoading,refetch}
-}
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-export default useAppwrite
+  const refetch = () => fetchData();
+
+  return { data, loading, refetch };
+};
+
+export default useAppwrite;
