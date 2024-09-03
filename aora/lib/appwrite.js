@@ -147,3 +147,31 @@ export async function searchPosts(query) {
     throw new Error(error);
   }
 }
+
+// Get video posts created by user
+export async function getUserPosts(userId) {
+  try {
+    const posts = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.videoCollectionId,
+      [Query.equal("creator", userId)]
+    );
+
+    return posts.documents;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+
+// logout
+
+export const signOut = async ()=>{
+  try {
+    const session = await account.deleteSession('current')
+    return session;
+  } catch (error) {
+    throw new Error(error)
+    
+  }
+}
