@@ -32,6 +32,8 @@ if (!fontsLoaded && !error) return null;
         <Stack.Screen name ="index" options={{headerShown:false}} />
         <Stack.Screen name ="(auth)" options={{headerShown:false}} />
         <Stack.Screen name ="(tabs)" options={{headerShown:false}} />
+        <Stack.Screen name ="search/[query]" options={{headerShown:false}} />
+
     </Stack>
     </GlobalProvider>
   )

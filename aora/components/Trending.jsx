@@ -1,25 +1,32 @@
-import { View, Text, FlatList, TouchableOpacity, ImageBackground, Image } from 'react-native'
-import React,{useState} from 'react';
-import * as Animatable from 'react-native-animatable';
-import { icons } from '../constants';
+import { useState } from "react";
+import { ResizeMode, Video } from "expo-av";
+import * as Animatable from "react-native-animatable";
+import {
+  FlatList,
+  Image,
+  ImageBackground,
+  TouchableOpacity,
+} from "react-native";
 
-const zoomIn={
-  0:{
-    scale:0.9
-  },
-  1:{
-    scale:1.1,
-  }
-}
+import { icons } from "../constants";
 
-const zoomOut={
-  0:{
-    scale:1
+const zoomIn = {
+  0: {
+    scale: 0.9,
   },
-  1:{
-    scale:0.9,
-  }
-}
+  1: {
+    scale: 1.1,
+  },
+};
+
+const zoomOut = {
+  0: {
+    scale: 1,
+  },
+  1: {
+    scale: 0.9,
+  },
+};
 
 const TrendingItem = ({ activeItem, item }) => {
   const [play, setPlay] = useState(false);
@@ -37,7 +44,8 @@ const TrendingItem = ({ activeItem, item }) => {
           resizeMode={ResizeMode.CONTAIN}
           useNativeControls
           shouldPlay
-          onPlaybackStatusUpdate={(status) => {
+          onPlaybackStatusUpdats={(status) => {
+
             if (status.didJustFinish) {
               setPlay(false);
             }
@@ -94,4 +102,4 @@ const Trending = ({ posts }) => {
   );
 };
 
-export default Trending
+export default Trending;

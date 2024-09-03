@@ -101,33 +101,49 @@ export async function createUser(email, password, username) {
     }
   }
 
-  export const getAllPosts = async ()=>{
-    try {
-      const posts = await databases.listDocuments(
-        appwriteConfig.databaseId,
-        appwriteConfig.videoCollectionId
-      );
-      return posts.documents;
-      
-    } catch (error) {
-      throw new Error(error)
-      
-    }
-    
-  }
+  // Get all video Posts
+export async function getAllPosts() {
+  try {
+    const posts = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.videoCollectionId
+    );
 
-  export const getLatestPosts = async ()=>{
-    try {
-      const posts = await databases.listDocuments(
-        appwriteConfig.databaseId,
-        appwriteConfig.videoCollectionId,
-        [Query.orderDesc('$createdAt',  Query.limit(7))] // only wanna show only few latest video
-      );
-      return posts.documents;
-      
-    } catch (error) {
-      throw new Error(error)
-      
-    }
-
+    return posts.documents;
+  } catch (error) {
+    throw new Error(error);
   }
+}
+
+// Get latest created video posts
+export async function getLatestPosts() {
+  try {
+    const posts = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.videoCollectionId,
+      [Query.orderDesc("$createdAt"), Query.limit(7)]
+    );
+
+    return posts.documents;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+// Get video posts that matches search query
+
+export async function searchPosts(query) {
+  try {
+    const posts = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.videoCollectionId,
+      [Query.search("title", query)]
+    );
+
+    if (!posts) throw new Error("Something went wrong");
+
+    return posts.documents;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
