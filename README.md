@@ -1,8 +1,4 @@
 # React-Native-App-for-AI-Videos
-![Home Page](<Screenshot_20240904_220848_Expo Go.jpg>)
-![Home Page](<Screenshot_20240904_220857_Expo Go.jpg>)
-![Create Page](<Screenshot_20240904_220907_Expo Go.jpg>)
-![Profile Page](<Screenshot_20240904_220919_Expo Go.jpg>)
 
 ## App Features
 
