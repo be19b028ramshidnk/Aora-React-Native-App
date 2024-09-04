@@ -48,7 +48,7 @@ const VideoCard = ({ title, creator, avatar, thumbnail, video }) => {
           resizeMode={ResizeMode.CONTAIN}
           useNativeControls
           shouldPlay
-          onLoad={() => console.log('Video Loaded')}
+          //onLoad={() => console.log('Video Loaded')}
           onError={(error) => console.log('Error loading video', error)}
           onPlaybackStatusUpdate={(status) => {
             if (status.didJustFinish) {
